@@ -1,0 +1,16 @@
+﻿@inject IOptionsSnapshot<HomeData> HomeData
+@{
+    ViewData["Title"] = "Home";
+}
+<div class="container-fluid mt-5">
+    <div class="container text-center justify-content-center">
+        <h2>@HomeData.Value.Heading</h2>
+        <div class="info-container mx-auto">
+            @(Html.Raw(string.Join("", HomeData.Value.Text)))
+        </div>
+        <div class="py-2"></div>
+        <div class="info-container mx-auto">
+            @(Html.Raw(string.Join("", HomeData.Value.Hint)))
+        </div>
+    </div>
+</div>

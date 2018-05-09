@@ -1,0 +1,18 @@
+﻿<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div id="navbar-logo" class="mr-2">
+        <img src="~/images/logo.png" class="mr-2">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">@ViewData["AppName"]</a>
+    </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse mr-auto" id="navbarCollapse">
+        <div class="navbar-nav">
+            <a navbar-active-check class="nav-item nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            <a navbar-active-check class="nav-item nav-link" asp-area="" asp-controller="PasswordCheck" asp-action="Index">Passwortprüfung</a>
+            <a navbar-active-check class="nav-item nav-link" asp-area="" asp-controller="AccountCheck" asp-action="Index">Accountprüfung</a>
+            <a navbar-active-check class="nav-item nav-link" asp-area="" asp-controller="LeakList" asp-action="Index">Datenleaks</a>
+            <a navbar-active-check class="nav-item nav-link" asp-area="" asp-controller="FAQ" asp-action="Index">FAQ</a>
+        </div>
+    </div>
+</nav>

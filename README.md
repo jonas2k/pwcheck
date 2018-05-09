@@ -1,0 +1,1 @@
+# pwcheck - a simple web based validation tool, that allows to check security, integrity and quality of password and login data

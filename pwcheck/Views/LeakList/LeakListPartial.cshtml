@@ -1,0 +1,24 @@
+﻿@model List<Breach>
+<table class="table table-borderless">
+    <tbody>
+        @{ foreach (var breach in Model) {
+                <tr>
+                    <td class="mx-5">
+                        <div class="breachlist-logo rounded">
+                            <img class="align-self-center" src="https://haveibeenpwned.com/Content/Images/PwnedLogos/@(breach.Name).@(breach.LogoType)" alt="@(breach.Name)">
+                        </div>
+                    </td>
+                    <td class="text-left mx-5"><b>@breach.Title</b>: @breach.GetDottedPwnCount() Accounts</td>
+                    <td class="text-right mx-5">
+                        <div class="small">
+                            Hinzugefügt am @breach.GetFormattedAddedDate()
+                        </div>
+                        <div class="small">
+                            Geleakt am @breach.GetFormattedBreachDate()
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

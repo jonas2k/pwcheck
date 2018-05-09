@@ -1,0 +1,29 @@
+﻿@inject IOptionsSnapshot<FaqData> FaqData
+@{
+    ViewData["Title"] = "FAQ";
+}
+
+<div class="container-fluid mt-5">
+    <div class="container text-left">
+        @{
+            if (FaqData != null) {
+                var items = FaqData.Value.FaqDataList;
+                var i = 0;
+                <ul>
+                    @foreach (var item in items) {
+                        <li><a href="#@(i)" class="invisible-link">@item.Question</a></li>
+                        i++;
+                    }
+                </ul>
+                i = 0;
+                @foreach (var item in items) {
+                    <p>
+                        <div id="@(i)" class="faq-link-target"><b>@item.Question</b></div>
+                        <div>@(Html.Raw(string.Join("", item.Answer)))</div>
+                    </p>
+                    i++;
+                }
+            }
+        }
+    </div>
+</div>

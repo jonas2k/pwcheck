@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2043
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pwcheck", "pwcheck\pwcheck.csproj", "{8F4E28E3-8398-444B-85B0-DABC332317CF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pwcheck.Tests", "pwcheck.Tests\pwcheck.Tests.csproj", "{6CE9121D-D90A-47F4-81AC-A40188F19838}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{8F4E28E3-8398-444B-85B0-DABC332317CF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8F4E28E3-8398-444B-85B0-DABC332317CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8F4E28E3-8398-444B-85B0-DABC332317CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8F4E28E3-8398-444B-85B0-DABC332317CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6CE9121D-D90A-47F4-81AC-A40188F19838}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6CE9121D-D90A-47F4-81AC-A40188F19838}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6CE9121D-D90A-47F4-81AC-A40188F19838}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6CE9121D-D90A-47F4-81AC-A40188F19838}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F90E92A9-9981-4C37-8737-F11C9DD726B8}
+	EndGlobalSection
+EndGlobal

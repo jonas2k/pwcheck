@@ -1,0 +1,33 @@
+﻿@model List<Breach>
+@{
+    ViewData["Title"] = "Datenleaks";
+}
+<div class="container-fluid mt-5">
+    <div class="text-center justify-content-center">
+
+        @if (Model.IsNullOrEmptyExt()) {
+            <h2>Zurzeit können keine Daten abgefragt werden</h2>
+
+        } else {
+            <div class="row">
+                <div class="col-sm-5">
+                    <h2 class="mb-3">Aktuelle Datenleaks</h2>
+                    <div>
+                        @{var latestList = Model.OrderByDescending(o => o.AddedDate).Take(10).ToList();
+                            @Html.Partial("LeakListPartial", latestList)
+                        }
+                    </div>
+                </div>
+                <div class="col-sm-2"></div>
+                <div class="col-sm-5">
+                    <h2 class="mb-3">Größte Datenleaks</h2>
+                    <div>
+                        @{var largestList = Model.OrderByDescending(o => o.PwnCount).Take(10).ToList();
+                            @Html.Partial("LeakListPartial", largestList)
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

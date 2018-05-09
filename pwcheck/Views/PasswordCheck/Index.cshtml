@@ -1,0 +1,33 @@
+﻿@{
+    ViewData["Title"] = "Passwortprüfung";
+}
+@section styles {
+    <link rel="stylesheet" href="~/lib/hsimp/hsimp.css">
+    <link rel="stylesheet" href="~/css/spinner.css">
+}
+@section scripts {
+    <script src="~/lib/hsimp/hsimp.min.js"></script>
+    <script src="~/js/sha1.js"></script>
+    <script src="~/js/pwcheck.js"></script>
+    <script src="~/js/pwrate.js"></script>
+    <script src="~/js/hsimp-customization.js"></script>
+}
+
+<div class="container-fluid mt-5">
+    <div class="container text-center">
+        <h2>Zu prüfendes Passwort eingeben</h2>
+        <p>Ihr Passwort bleibt geheim! Weitere Informationen <a asp-controller="FAQ" asp-action="Index">hier</a>.</p>
+        <input type="password" id="pwinput" class="datainput" />
+        <div class="row">
+            <div class="lead col-sm" id="results">
+            </div>
+        </div>
+        <div class="row">
+            <div class="lead col-sm" id="hsimptime">
+            </div>
+        </div>
+        <div class="info-container mt-5 mx-auto" id="hsimpchecks">
+        </div>
+    </div>
+
+</div>

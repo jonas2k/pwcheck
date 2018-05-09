@@ -1,0 +1,16 @@
+﻿{
+  "homeData": {
+    "Heading": "Willkommen",
+    "Text": [
+      "Diese Webanwendung ermöglicht die Überprüfung, ob ein Passwort oder ein Anmeldename ",
+      "in einer öffentlich zugänglichen Quelle enthalten ist. Dabei handelt es sich meistens um ",
+      "geleakte Datenbanken eines gehackten Dienstanbieters."
+    ],
+    "Hint": [
+      "Misstrauen und Vorsicht sind bei einer Eingabe von Anmeldedaten auf Webseiten grundsätzlich immer angebracht! ",
+      "Im Falle dieser Webanwendung können Sie jedoch sicher sein, dass Ihre eingegebenen Daten geheim bleiben. ", 
+      "Zu prüfende Passwörter befinden sich ausschließlich in Ihrem Browser ",
+      "und werden an keine weiteren Systeme übertragen. Bitte beachten Sie auch die weiteren Hinweise in den FAQ."
+    ]
+  }
+}

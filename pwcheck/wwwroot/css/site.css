@@ -1,0 +1,93 @@
+﻿body {
+    padding-top: 4.5rem;
+    padding-bottom: 10px;
+    min-height: 100vh;
+}
+
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.flex-grow {
+    flex: 1;
+}
+
+.datainput {
+    font-family: sans-serif;
+    font-size: 2em;
+    font-weight: 300;
+    color: #888;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    padding: 0.25em 10px;
+    line-height: 1.5em;
+    width: 700px;
+    height: 80px;
+}
+
+#navbar-logo img {
+    max-height: 40px;
+}
+
+.breach-logo {
+    display: inline-block;
+    min-width: 100px;
+}
+
+    .breach-logo img {
+        height: 40px;
+    }
+
+.breachlist-logo {
+    width: 70px;
+    height: 30px;
+    background-color: lightgray;
+}
+
+    .breachlist-logo img {
+        max-width: 95%;
+        max-height: 95%;
+    }
+
+.invisible-link, .invisible-link:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.faq-link-target::before {
+    display: block;
+    content: " ";
+    margin-top: -60px;
+    height: 60px;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.info-container {
+    width: 700px;
+}
+
+.insecureBadge {
+    border-left-width: 8px;
+    border-left-style: solid;
+    border-left-color: red;
+}
+
+.warningBadge {
+    border-left-width: 8px;
+    border-left-style: solid;
+    border-left-color: orange;
+}
+
+.noticeBadge {
+    border-left-width: 8px;
+    border-left-style: solid;
+    border-left-color: grey;
+}
+
+.achievementBadge {
+    border-left-width: 8px;
+    border-left-style: solid;
+    border-left-color: green;
+}

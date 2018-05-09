@@ -1,0 +1,75 @@
+﻿{
+  "FaqData": {
+    "FaqDataList": [
+      {
+        "Question": "Allgemeine Hinweise",
+        "Answer": [
+          "Grundsätzlich ist Skepsis stets angebracht, sobald man dazu aufgefordert wird, ",
+          "ein Kennwort auf einer unbekannten Webseite einzugeben. Diese Achtsamkeit sollten Sie in jedem Fall ",
+          "beibehalten und jede Aufforderung zur Eingabe sensibler Informationen kritisch hinterfragen. ",
+          "Im Falle dieser Webanwendung können Sie jedoch sicher sein, ",
+          "dass alle eingegebenen Passwörter weder protokolliert noch an andere Systeme übertragen werden."
+        ]
+      },
+      {
+        "Question": "Ist der Quellcode dieser Seite öffentlich?",
+        "Answer": [
+          "Sämtlicher Quellcode kann auf <a href=\"https://github.com/jonas2k/pwcheck \"target=\\\"_blank\\\">Github</a> eingesehen werden."
+        ]
+      },
+      {
+        "Question": "Wozu dient diese Seite?",
+        "Answer": [
+          "Diese Webanwedung ermöglicht die Überprüfung der Integrität von Passwörtern und Anmeldenamen. ",
+          "Es wird ermittelt, ob das Passwort oder der Anmeldename in gehackten, öffentlich zugänglichen Datensätzen enthalten ist. ",
+          "Zu diesem Zweck wird der Dienst <a href=\"https://haveibeenpwned.com\" target=\"_blank\">haveibeenpwned</a> des Sicherheitsforschers Troy Hunt genutzt, ",
+          "welcher Informationen zu bekannten Hacks, kompromittierten Anbietern und veröffentlichten Datenbanken bereitstellt. ",
+          "Zudem werden Hinweise bezüglich der Qualität des eingegebenen Passworts unter Verwendung von ",
+          "<a href=\"https://github.com/howsecureismypassword/hsimp \"target=\\\"_blank\\\">HSIMP</a> gegeben."
+        ]
+      },
+      {
+        "Question": "Wie funktioniert die Überprüfung des Passworts?",
+        "Answer": [
+          "Das eingegebene Passwort verlässt zu keinem Zeitpunkt den Browser. ",
+          "Zur Prüfung wird lokal ein SHA1-Hash des eingegebenen Kennworts erzeugt. ",
+          "Die ersten fünf Zeichen dieses Hashes werden an die REST-API von haveibeenpwned gesendet. ",
+          "Der Dienst beantwortet die Anfrage mit allen Hashes aus Datenlecks, in denen diese Zeichen enthalten sind. ",
+          "Somit ist ein lokaler Abgleich möglich, ohne das Passwort übermitteln zu müssen."
+        ]
+      },
+      {
+        "Question": "Wie funktioniert die Überprüfung des Anmeldenamens?",
+        "Answer": [
+          "Um festzustellen, ob der Anmeldename in einem gehackten Datensatz enthalten ist, ",
+          "wird dieser an den oben genannten Dienst übertragen. ",
+          "Im Falle eines Fundes können weitere Details zu dem jeweiligen Hack abgefragt werden."
+        ]
+      },
+      {
+        "Question": "Was ist mit \"unbestätigten Hacks\" gemeint?",
+        "Answer": [
+          "Aufgefundene Datensätze werden als unbestätigt bezeichnet, wenn sie nicht eindeutig einem Hack zugeordnet werden können. ",
+          "Nicht jeder Dienstanbieter gesteht eine Kompromittierung ein. Sofern die Zweifel an einer eindeutigen Zuordenbarkeit überwiegen, ",
+          "wird der Datensatz durch dieses Merkmal gekennzeichnet. Unabhängig von dem Ursprung handelt es sich dabei jedoch nach wie vor um Daten, ",
+          "die im Internet frei zugänglich sind. Im Falle eines Fundes besteht demnach der identische Handlungsbedarf. "
+        ]
+      },
+      {
+        "Question": "Was wird zur Benutzung dieser Webanwendung benötigt?",
+        "Answer": [
+          "Sie benötigen einen HTML5-fähigen Browser mit aktiviertem Javascript. ",
+          "Es empfehlen sich moderne Browser wie Mozilla Firefox, Microsoft Edge oder Google Chrome. ",
+          "Da der Internet-Explorer die Javascript-ES6-Spezifikation nicht unterstützt, ",
+          "können die meisten Funktionen dieser Webanwendung mit diesem Browser nicht verwendet werden."
+        ]
+      },
+      {
+        "Question": "Weitere Fragen?",
+        "Answer": [
+          "Bitte wenden Sie sich via Github an den Autor."
+        ]
+      }
+    ]
+  }
+}

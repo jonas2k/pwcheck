@@ -26,8 +26,8 @@
                                     $("<div />").prop({ class: "row align-items-center" }).append(
                                         $("<div />").prop({ class: "col-sm" }).append(value.Name))
                                         .append(
-                                        $("<div />").prop({ class: "col-sm" }).append(
-                                            $("<button />").prop({ id: value.Name + "Button", type: "button", value: value.Name, class: "detailsButton btn btn-outline-dark my-1" }).text("Details")))
+                                            $("<div />").prop({ class: "col-sm" }).append(
+                                                $("<button />").prop({ id: value.Name + "Button", type: "button", value: value.Name, class: "detailsButton btn btn-outline-dark my-1" }).text("Details")))
 
                                 );
                             });
@@ -94,7 +94,7 @@ function getBreachLogo(name, logoType) {
     return (
         $("<div />").prop({ class: "row justify-content-center bg-dark rounded breach-logo" })
             .append(
-            $("<img />").prop({ src: "https://haveibeenpwned.com/Content/Images/PwnedLogos/" + name + "." + logoType, class: "m-2" }))
+                $("<img />").prop({ src: "https://haveibeenpwned.com/Content/Images/PwnedLogos/" + name + "." + logoType, class: "m-2" }))
     );
 }
 
@@ -102,8 +102,8 @@ function getBreachDetailRow(description, data) {
     return (
         $("<div />").prop({ class: "row justify-content-center" })
             .append(
-            $("<div />").prop({ class: "col-sm text-right" }).text(description))
+                $("<div />").prop({ class: "col-sm text-right" }).text(description))
             .append(
-            $("<div />").prop({ class: "col-sm text-left" }).text(data))
+                $("<div />").prop({ class: "col-sm text-left" }).text(data))
     );
 }

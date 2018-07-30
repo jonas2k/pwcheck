@@ -3,13 +3,13 @@
     <tbody>
         @{ foreach (var breach in Model) {
                 <tr>
-                    <td class="mx-5">
+                    <td>
                         <div class="breachlist-logo rounded">
                             <img class="align-self-center" src="https://haveibeenpwned.com/Content/Images/PwnedLogos/@(breach.Name).@(breach.LogoType)" alt="@(breach.Name)">
                         </div>
                     </td>
-                    <td class="text-left mx-5"><b>@breach.Title</b>: @breach.GetDottedPwnCount() Accounts</td>
-                    <td class="text-right mx-5">
+                    <td class="text-left"><a href="https://haveibeenpwned.com/PwnedWebsites#@(breach.Name)" target="_blank" class="invisible-link"><b>@breach.Title</b></a>: @breach.GetDottedPwnCount() Accounts</td>
+                    <td class="text-right">
                         <div class="small">
                             Hinzugefügt am @breach.GetFormattedAddedDate()
                         </div>

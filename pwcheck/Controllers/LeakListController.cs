@@ -7,15 +7,18 @@ using System.Net.Http;
 using System.Runtime.Serialization.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using pwcheck.Models;
 
 namespace pwcheck.Controllers {
     public class LeakListController : Controller {
 
         private readonly HttpClient httpClient;
+        private readonly ILogger logger;
 
-        public LeakListController(HttpClient httpClient) {
+        public LeakListController(HttpClient httpClient, ILogger<LeakListController> logger) {
             this.httpClient = httpClient;
+            this.logger = logger;
         }
 
         public IActionResult Index() {
@@ -23,7 +26,8 @@ namespace pwcheck.Controllers {
             List<Breach> breaches;
             try {
                 breaches = GetLatestBreaches().Result;
-            } catch (Exception) {
+            } catch (Exception exception) {
+                logger.LogWarning(exception, "An exception occured during http request");
                 breaches = new List<Breach>();
             }
             return View(breaches);
@@ -31,6 +35,7 @@ namespace pwcheck.Controllers {
 
         private async Task<List<Breach>> GetLatestBreaches() {
             httpClient.DefaultRequestHeaders.Accept.Clear();
+            httpClient.DefaultRequestHeaders.Add("User-Agent", "pwcheck");
 
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Breach>));
 

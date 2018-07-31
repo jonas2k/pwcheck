@@ -1,0 +1,45 @@
+version: 1.0.{build}
+branches:
+  only:
+  - master
+image: Previous Visual Studio 2017
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  package_version: '{version}'
+  assembly_version: '{version}'
+  file_version: '{version}'
+  informational_version: '{version}'
+install:
+- ps: Install-Product node 10
+before_build:
+- cmd: >-
+    dotnet restore
+
+    cd ./pwcheck
+
+    npm install
+
+    cd ./node_modules/.bin/
+
+    gulp.cmd
+
+    cd ../../..
+build:
+  publish_wap_xcopy: true
+  parallel: true
+  verbosity: minimal
+after_test:
+- ps: dotnet publish -c Release
+artifacts:
+- path: ./pwcheck/bin/Release/netcoreapp2.1/publish/
+  name: Publish
+deploy:
+- provider: AzureAppServiceZipDeploy
+  website: pwcheck
+  username: OT5iE8nupOrpU7onQ7bB
+  password:
+    secure: BxrT9EyavSjSuurySqm+KxNcZKtGCi186+fenb37VTg=
+  artifact: Publish
+  appservice_environment: false

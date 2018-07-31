@@ -6,14 +6,12 @@
 }
 
 <div class="container-fluid mt-5">
-    <div class="container text-center">
+    <div class="container text-center info-container">
 
         <h2>Zu prüfenden Anmeldenamen eingeben</h2>
-        <div class="mb-1">
-            <span>Unbestätigte Hacks einschließen?</span><input type="checkbox" checked class="mx-1" id="includeUnverified">
-        </div>
-        <div class="input-group mb-3 justify-content-center">
-            <input type="text" id="accinput" class="datainput" autocomplete="off" placeholder="E-Mail-Adresse oder Benutzername">
+        <p>Unbestätigte Hacks einschließen?<input type="checkbox" checked class="mx-1" id="includeUnverified"></p>
+        <div class="input-group mb-4">
+            <input type="text" id="accinput" class="datainput flex-grow" autocomplete="off" placeholder="E-Mail-Adresse oder Benutzername">
             <div class="input-group-append">
                 <button id="sendButton" class="btn btn-outline-dark" type="button">Absenden</button>
             </div>

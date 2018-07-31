@@ -102,8 +102,8 @@ function getBreachDetailRow(description, data) {
     return (
         $("<div />").prop({ class: "row justify-content-center" })
             .append(
-                $("<div />").prop({ class: "col-sm text-right" }).text(description))
+                $("<div />").prop({ class: "col col-sm text-right" }).text(description))
             .append(
-                $("<div />").prop({ class: "col-sm text-left" }).text(data))
+                $("<div />").prop({ class: "col col-sm text-left" }).text(data))
     );
 }

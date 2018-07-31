@@ -22,7 +22,7 @@
         "Answer": [
           "Diese Webanwedung ermöglicht die Überprüfung der Integrität von Passwörtern und Anmeldenamen. ",
           "Es wird ermittelt, ob das Passwort oder der Anmeldename in gehackten, öffentlich zugänglichen Datensätzen enthalten ist. ",
-          "Zu diesem Zweck wird der Dienst <a href=\"https://haveibeenpwned.com\" target=\"_blank\">haveibeenpwned</a> des Sicherheitsforschers Troy Hunt genutzt, ",
+          "Zu diesem Zweck wird der Dienst <a href=\"https://haveibeenpwned.com\" target=\"_blank\">haveibeenpwned</a> des Sicherheitsforschers <a href=\"https://twitter.com/troyhunt\" target=\"_blank\">Troy Hunt</a> genutzt, ",
           "welcher Informationen zu bekannten Hacks, kompromittierten Anbietern und veröffentlichten Datenbanken bereitstellt. ",
           "Zudem werden Hinweise bezüglich der Qualität des eingegebenen Passworts unter Verwendung von ",
           "<a href=\"https://github.com/howsecureismypassword/hsimp \"target=\\\"_blank\\\">HSIMP</a> gegeben."

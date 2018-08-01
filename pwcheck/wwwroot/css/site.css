@@ -22,6 +22,7 @@
     padding: 0.25em 10px;
     line-height: 1.5em;
     height: 80px;
+    box-sizing: border-box;
 }
 
 #navbar-logo img {

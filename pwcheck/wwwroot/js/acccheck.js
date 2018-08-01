@@ -10,6 +10,7 @@
 
             accinput = $("#accinput").val();
             includeUnverified = $("#includeUnverified").prop('checked');
+            resultsDiv.empty();
             detailsDiv.empty();
 
             if (accinput) {
@@ -32,8 +33,10 @@
                                 );
                             });
                             $(".detailsButton").on("click", (event) => {
-                                getBreachDetails($(event.target).attr("value"), detailsDiv);
-
+                                var requestedItem = $(event.target).attr("value");
+                                if (detailsDivDoesNotContainRequestedItem(detailsDiv, requestedItem)) {
+                                    getBreachDetails(requestedItem, detailsDiv);
+                                }
                             });
                         }
                     })
@@ -106,4 +109,8 @@ function getBreachDetailRow(description, data) {
             .append(
                 $("<div />").prop({ class: "col col-sm text-left" }).text(data))
     );
+}
+
+function detailsDivDoesNotContainRequestedItem(detailsDiv, requestedItem) {
+    return detailsDiv.find('.col').filter(":contains('" + requestedItem + "')").length === 0;
 }

@@ -27,6 +27,7 @@ namespace pwcheck {
             services.AddSingleton(httpClient);
 
             services.AddMvc();
+            services.AddApplicationInsightsTelemetry();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {

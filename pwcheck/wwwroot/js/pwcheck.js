@@ -17,7 +17,7 @@
                 .append($("<div />").text("Prüfvorgang läuft.")));
     });
 
-    pwinput.on("keyup", () => {
+    pwinput.on("keyup input", () => {
 
         clearTimeout(timer);
 

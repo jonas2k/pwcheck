@@ -4,9 +4,11 @@
         @{ foreach (var breach in Model) {
                 <tr>
                     <td>
-                        <div class="breachlist-logo rounded">
-                            <img class="align-self-center" src="https://haveibeenpwned.com/Content/Images/PwnedLogos/@(breach.Name).@(breach.LogoType)" alt="@(breach.Name)">
-                        </div>
+                        <a href="https://haveibeenpwned.com/PwnedWebsites#@(breach.Name)" target="_blank">
+                            <div class="breachlist-logo rounded">
+                                <img class="align-self-center" src="https://haveibeenpwned.com/Content/Images/PwnedLogos/@(breach.Name).@(breach.LogoType)" alt="@(breach.Name)">
+                            </div>
+                        </a>
                     </td>
                     <td class="text-left"><a href="https://haveibeenpwned.com/PwnedWebsites#@(breach.Name)" target="_blank" class="invisible-link"><b>@breach.Title</b></a>: @breach.GetDottedPwnCount() Accounts</td>
                     <td class="text-right">

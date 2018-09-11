@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.Net.Http;
 using pwcheck.Helpers;
 using System.Net;
+using Microsoft.AspNetCore.Mvc;
 
 namespace pwcheck {
     public class Startup {
@@ -22,11 +23,12 @@ namespace pwcheck {
             services.Configure<CurrentCommit>(Configuration);
             services.Configure<FaqData>(Configuration.GetSection("faqData"));
             services.Configure<HomeData>(Configuration.GetSection("homeData"));
+            services.Configure<HibpSettings>(Configuration);
 
             HttpClient httpClient = new HttpClient(GetHttpClientHandler());
             services.AddSingleton(httpClient);
 
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddApplicationInsightsTelemetry();
         }
 

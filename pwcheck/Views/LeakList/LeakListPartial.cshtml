@@ -1,25 +1,29 @@
 ﻿@model List<Breach>
+@inject IOptions<HibpSettings> hibpSettingsOptions
+@{
+    HibpSettings hibpSettings = hibpSettingsOptions.Value;
+}
 <table class="table table-borderless">
     <tbody>
         @{ foreach (var breach in Model) {
-                <tr>
-                    <td>
-                        <a href="https://haveibeenpwned.com/PwnedWebsites#@(breach.Name)" target="_blank">
-                            <div class="breachlist-logo rounded">
-                                <img class="align-self-center" src="https://haveibeenpwned.com/Content/Images/PwnedLogos/@(breach.Name).@(breach.LogoType)" alt="@(breach.Name)">
-                            </div>
-                        </a>
-                    </td>
-                    <td class="text-left"><a href="https://haveibeenpwned.com/PwnedWebsites#@(breach.Name)" target="_blank" class="invisible-link"><b>@breach.Title</b></a>: @breach.GetDottedPwnCount() Accounts</td>
-                    <td class="text-right">
-                        <div class="small">
-                            Hinzugefügt am @breach.GetFormattedAddedDate()
-                        </div>
-                        <div class="small">
-                            Geleakt am @breach.GetFormattedBreachDate()
-                        </div>
-                    </td>
-                </tr>
+        <tr>
+            <td>
+                <a href="@(hibpSettings.HibpPwnedWebsitesUrl)@(breach.Name)" target="_blank">
+                    <div class="breachlist-logo rounded">
+                        <img class="align-self-center" src="@(hibpSettings.HibpPwnedLogosUrl)@(breach.Name).@(breach.LogoType)" alt="@(breach.Name)">
+                    </div>
+                </a>
+            </td>
+            <td class="text-left"><a href="@(hibpSettings.HibpPwnedWebsitesUrl)@(breach.Name)" target="_blank" class="invisible-link"><b>@breach.Title</b></a>: @breach.GetDottedPwnCount() Accounts</td>
+            <td class="text-right">
+                <div class="small">
+                    Hinzugefügt am @breach.GetFormattedAddedDate()
+                </div>
+                <div class="small">
+                    Geleakt am @breach.GetFormattedBreachDate()
+                </div>
+            </td>
+        </tr>
             }
         }
     </tbody>

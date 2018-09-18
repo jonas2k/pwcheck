@@ -16,7 +16,6 @@
             $("#hsimpchecks").append(
                 $("<div />").prop({ class: value.level + "Badge" }).append(
                     $("<p />").append(
-
                         $("<div />").prop({ class: "lead" }).append(value.name)
                     ).append(
                         $("<div />").append(value.message)

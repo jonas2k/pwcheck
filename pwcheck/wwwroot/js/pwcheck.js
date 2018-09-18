@@ -2,13 +2,14 @@
 
     var checkDelay = 1000;
     var pwinput = $("#pwinput");
+    var results = $("#results");
     var isInProgress = false;
     var lastCheckedPassword = "";
     var timer = 0;
 
-    $("#results").on("isLoading", () => {
+    results.on("isLoading", () => {
 
-        $("#results").empty().append(
+        results.empty().append(
             $("<span />").prop({ class: "row justify-content-center" }).append(
                 $("<div />").prop({ class: "spinner" })
                     .append($("<div />").prop({ class: "spin1" }))
@@ -25,7 +26,7 @@
 
         if (!isInProgress && pwplain && pwplain !== lastCheckedPassword) {
 
-            $("#results").trigger("isLoading");
+            results.trigger("isLoading");
 
             timer = setTimeout(() => {
                 isInProgress = true;
@@ -47,22 +48,21 @@
                                     matches = responseList[i].split(":")[1];
                                 }
                             }
-                            $("#results").html("Das Passwort ist in " + numberWithCommas(matches) + " Datenleaks enthalten.");
+                            results.html("Das Passwort ist in " + (parseInt(matches) === 1 ? "einem Datenleak" : numberWithCommas(matches) + " Datenleaks") + " enthalten.");
                         } else {
-                            $("#results").html("Das Passwort ist in keinen bekannten Datenleaks enthalten.");
+                            results.html("Das Passwort ist in keinen bekannten Datenleaks enthalten.");
                         }
                     })
                     .fail(() => {
-                        $("#results").html("Fehler beim Abfragen.");
+                        results.html("Fehler beim Abfragen.");
                     })
                     .always(() => {
                         isInProgress = false;
                     });
             }, checkDelay);
 
-
         } else if (pwplain === "") {
-            $("#results").html("");
+            results.html("");
         }
     });
 });

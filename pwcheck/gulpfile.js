@@ -28,7 +28,7 @@ gulp.task("clean:css", function (cb) {
     rimraf(paths.concatCssDest, cb);
 });
 
-gulp.task("clean", ["clean:js", "clean:css"]);
+gulp.task("clean", gulp.series(["clean:js", "clean:css"]));
 
 gulp.task("min:js", function () {
     return gulp.src([paths.js, "!" + paths.minJs], { base: "." })
@@ -44,7 +44,7 @@ gulp.task("min:css", function () {
         .pipe(gulp.dest("."));
 });
 
-gulp.task("min", ["min:js", "min:css"]);
+gulp.task("min", gulp.series(["min:js", "min:css"]));
 
 var deps = {
     "jquery": {
@@ -90,12 +90,13 @@ gulp.task("dependencies:hsimp", () => {
 
 });
 
-gulp.task("dependencies", ["dependencies:bootstrap", "dependencies:jquery", "dependencies:jquery-validation", "dependencies:jquery-validation-unobtrusive", "dependencies:hsimp"]);
+gulp.task("dependencies", gulp.series(["dependencies:bootstrap", "dependencies:jquery", "dependencies:jquery-validation", "dependencies:jquery-validation-unobtrusive", "dependencies:hsimp"]));
 
-gulp.task("gitrev", () => {
+gulp.task("gitrev", (done) => {
     gitrev.short((shortval) => {
         require("fs").writeFileSync("currentcommit.json", JSON.stringify({ "commit": shortval, "branch": "master" }));
+        done();
     });
 });
 
-gulp.task("default", ["dependencies", "gitrev"]);
+gulp.task("default", gulp.series(["dependencies", "gitrev"]));

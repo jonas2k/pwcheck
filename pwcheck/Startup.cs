@@ -25,8 +25,9 @@ namespace pwcheck {
             services.Configure<HomeData>(Configuration.GetSection("homeData"));
             services.Configure<HibpSettings>(Configuration);
 
-            HttpClient httpClient = new HttpClient(GetHttpClientHandler());
-            services.AddSingleton(httpClient);
+            services.AddHttpClient(Constants.DEFAULT_HTTP_CLIENT).ConfigurePrimaryHttpMessageHandler(() => {
+                return GetHttpClientHandler();
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddApplicationInsightsTelemetry();
@@ -49,7 +50,7 @@ namespace pwcheck {
             });
         }
 
-        private HttpClientHandler GetHttpClientHandler() {
+        private HttpMessageHandler GetHttpClientHandler() {
             HttpClientHandler handler = new HttpClientHandler();
             string proxyHost = Configuration.GetValue<string>("ProxyHost");
             string proxyPort = Configuration.GetValue<string>("ProxyPort");

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using pwcheck.Models;
+using pwcheck.Helpers;
 
 namespace pwcheck.Controllers {
     public class LeakListController : Controller {
@@ -16,8 +17,8 @@ namespace pwcheck.Controllers {
         private readonly HttpClient httpClient;
         private readonly ILogger logger;
 
-        public LeakListController(HttpClient httpClient, ILogger<LeakListController> logger) {
-            this.httpClient = httpClient;
+        public LeakListController(IHttpClientFactory httpClientFactory, ILogger<LeakListController> logger) {
+            httpClient = httpClientFactory.CreateClient(Constants.DEFAULT_HTTP_CLIENT);
             this.logger = logger;
         }
 

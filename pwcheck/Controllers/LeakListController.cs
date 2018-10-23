@@ -16,8 +16,8 @@ namespace pwcheck.Controllers {
         private readonly HttpClient httpClient;
         private readonly ILogger logger;
 
-        public LeakListController(HttpClient httpClient, ILogger<LeakListController> logger) {
-            this.httpClient = httpClient;
+        public LeakListController(IHttpClientFactory httpClientFactory, ILogger<LeakListController> logger) {
+            this.httpClient = httpClientFactory.CreateClient();
             this.logger = logger;
         }
 

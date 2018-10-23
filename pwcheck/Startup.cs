@@ -25,8 +25,7 @@ namespace pwcheck {
             services.Configure<HomeData>(Configuration.GetSection("homeData"));
             services.Configure<HibpSettings>(Configuration);
 
-            HttpClient httpClient = new HttpClient(GetHttpClientHandler());
-            services.AddSingleton(httpClient);
+            services.AddHttpClient("DefaultHttpClient").ConfigurePrimaryHttpMessageHandler(() => GetHttpClientHandler());
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddApplicationInsightsTelemetry();

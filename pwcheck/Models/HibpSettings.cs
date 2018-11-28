@@ -6,7 +6,5 @@ using System.Threading.Tasks;
 namespace pwcheck.Models {
     public class HibpSettings {
         public string HibpPwnedWebsitesUrl { get; set; }
-        public string HibpPwnedLogosUrl { get; set; }
-        public string HibpPwnedLogoType { get; set; }
     }
 }

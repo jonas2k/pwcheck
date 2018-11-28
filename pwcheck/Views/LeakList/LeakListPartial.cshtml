@@ -10,7 +10,7 @@
             <td>
                 <a href="@(hibpSettings.HibpPwnedWebsitesUrl)@(breach.Name)" target="_blank">
                     <div class="breachlist-logo rounded">
-                        <img class="align-self-center" src="@(hibpSettings.HibpPwnedLogosUrl)@(breach.Name).@(breach.LogoType)" alt="@(breach.Name)">
+                        <img class="align-self-center" src="@(hibpSettings.HibpPwnedLogosUrl)@(breach.Name).@(breach.LogoType ?? hibpSettings.HibpPwnedLogoType)" alt="@(breach.Name)">
                     </div>
                 </a>
             </td>

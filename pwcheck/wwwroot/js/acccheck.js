@@ -79,7 +79,7 @@ function getBreachDetails(breachName, targetDiv) {
             var formattedDate = new Date(data.BreachDate).toLocaleDateString();
 
             targetDiv.append(
-                getBreachLogo(data.Name, data.LogoType),
+                getBreachLogo(data.LogoPath),
                 getBreachDetailRow("Name:", data.Name),
                 getBreachDetailRow("Datum:", formattedDate),
                 getBreachDetailRow("Anzahl betroffener Nutzer:", dottedPwnCount),
@@ -93,11 +93,11 @@ function getBreachDetails(breachName, targetDiv) {
         });
 }
 
-function getBreachLogo(name, logoType) {
+function getBreachLogo(logoPath) {
     return (
         $("<div />").prop({ class: "row justify-content-center bg-dark rounded breach-logo" })
             .append(
-                $("<img />").prop({ src: "https://haveibeenpwned.com/Content/Images/PwnedLogos/" + name + "." + logoType, class: "m-2" }))
+                $("<img />").prop({ src: logoPath, class: "m-2" }))
     );
 }
 

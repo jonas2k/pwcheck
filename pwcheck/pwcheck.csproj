@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.1</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
     <ApplicationInsightsResourceId>/subscriptions/511d6eda-c765-4efa-9dea-1b3a65c60518/resourcegroups/pwcheck/providers/microsoft.insights/components/pwcheck</ApplicationInsightsResourceId>
     <ApplicationInsightsAnnotationResourceId>/subscriptions/511d6eda-c765-4efa-9dea-1b3a65c60518/resourcegroups/pwcheck/providers/microsoft.insights/components/pwcheck</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
@@ -14,9 +14,10 @@
   </ItemGroup>
 
   <ItemGroup>
+  	<PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.5.1" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.6" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.6" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.1" />
   </ItemGroup>
 
   <ItemGroup>

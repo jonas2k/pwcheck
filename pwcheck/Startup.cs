@@ -29,7 +29,7 @@ namespace pwcheck {
                 return GetHttpClientHandler();
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddApplicationInsightsTelemetry();
         }
 

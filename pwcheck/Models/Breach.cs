@@ -12,6 +12,8 @@ namespace pwcheck.Models {
         public string BreachDate { get; set; }
         public int PwnCount { get; set; }
         public string LogoPath { get; set; }
+        public bool IsVerified { get; set; }
+        public string[] DataClasses { get; set; }
 
         public string GetDottedPwnCount() {
             return PwnCount.ToString("N0");

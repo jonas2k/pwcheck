@@ -8,5 +8,6 @@ namespace pwcheck.Helpers {
         public static readonly string APPLICATION_NAME = "pwcheck";
         public static readonly string AUTHOR = "jonas2k";
         public static readonly string DEFAULT_HTTP_CLIENT = "DefaultHttpClient";
+        public static readonly string HTTP_CLIENT_USERAGENT = "pwcheck-pub";
     }
 }

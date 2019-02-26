@@ -8,5 +8,11 @@ namespace pwcheck.Controllers {
     public class AccountCheckController : Controller {
 
         public IActionResult Index() => View();
+
+        [HttpPost]
+        public IActionResult CheckAccount(string input, bool includeUnverified) => ViewComponent("AccountCheckResults", new { input, includeUnverified });
+
+        [HttpPost]
+        public IActionResult GetBreachDetails(string breachName) => ViewComponent("AccountCheckDetails", breachName);
     }
 }

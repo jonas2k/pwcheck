@@ -1,8 +1,8 @@
 ﻿$(window).on("load", () => {
 
     var accinput, includeUnverified;
-    var resultsDiv = $("#resultsContent");
-    var detailsDiv = $("#detailsContent");
+    var resultsDiv = $("#results");
+    var detailsDiv = $("#details");
 
     $("#sendButton").on("click", () => {
 
@@ -10,56 +10,38 @@
 
             accinput = $("#accinput").val();
             includeUnverified = $("#includeUnverified").prop('checked');
+
             resultsDiv.empty();
             detailsDiv.empty();
 
             if (accinput) {
                 resultsDiv.empty().hide();
-                $.ajax("https://haveibeenpwned.com/api/v2/breachedaccount/" + accinput + "?truncateResponse=true" + (includeUnverified ? "?includeUnverified=true" : ""))
+
+                $.ajax(
+                    {
+                        url: "AccountCheck/CheckAccount",
+                        method: "POST",
+                        data: { input: accinput, includeUnverified: includeUnverified }
+                    })
                     .done((data, text, xhr) => {
-
-                        $("#resultsHeading").removeAttr("Hidden");
-                        $("#detailsHeading").removeAttr("Hidden");
-
                         if (xhr.status === 200) {
-                            $.each(data, (index, value) => {
-                                resultsDiv.append(
-                                    $("<div />").prop({ class: "row align-items-center" }).append(
-                                        $("<div />").prop({ class: "col-sm" }).append(value.Name))
-                                        .append(
-                                            $("<div />").prop({ class: "col-sm" }).append(
-                                                $("<button />").prop({ id: value.Name + "Button", type: "button", value: value.Name, class: "detailsButton btn btn-outline-dark my-1" }).text("Details")))
-
-                                );
-                            });
-                            $(".detailsButton").on("click", (event) => {
-                                var requestedItem = $(event.target).attr("value");
-                                if (detailsDivDoesNotContainRequestedItem(detailsDiv, requestedItem)) {
-                                    getBreachDetails(requestedItem, detailsDiv);
-                                }
-                            });
+                            resultsDiv.html(data);
                         }
                     })
-                    .fail((xhr, text, error) => {
-
-                        $("#resultsHeading").attr("Hidden", "");
-                        $("#detailsHeading").attr("Hidden", "");
-
-                        var msg;
-                        if (xhr.status === 404) {
-                            msg = "Dieser Anmeldename ist in keinem bekannten gestohlenen Datensatz enthalten!";
-                        } else {
-                            msg = "Fehler beim Abfragen der Daten.";
-                        }
-                        resultsDiv.append(
-                            $('<div />').append(msg));
+                    .fail(() => {
+                        resultsDiv.html("Kann nicht mit dem Webserver kommunizieren.");
                     })
-                    .always(function () {
+                    .always(() => {
                         resultsDiv.fadeIn("fast");
+                        $(".detailsButton").on("click", (event) => {
+                            var requestedBreach = $(event.target).attr("value");
+                            getBreachDetails(requestedBreach, detailsDiv);
+                        });
                     });
             }
         }
     });
+
 
     $("#accinput").keydown((event) => {
         if (event.keyCode === 13) {
@@ -68,49 +50,29 @@
     });
 });
 
-function getBreachDetails(breachName, targetDiv) {
+function getBreachDetails(breachName, detailsDiv) {
 
-    $.ajax("https://haveibeenpwned.com/api/v2/breach/" + breachName)
-        .done((data) => {
-
-            targetDiv.empty();
-
-            var dottedPwnCount = numberWithCommas(data.PwnCount);
-            var formattedDate = new Date(data.BreachDate).toLocaleDateString();
-
-            targetDiv.append(
-                getBreachLogo(data.LogoPath),
-                getBreachDetailRow("Name:", data.Name),
-                getBreachDetailRow("Datum:", formattedDate),
-                getBreachDetailRow("Anzahl betroffener Nutzer:", dottedPwnCount),
-                getBreachDetailRow("Betroffene Daten:", data.DataClasses.join(", ")),
-                getBreachDetailRow("Bestätigter Hack:", data.IsVerified ? "Ja" : "Nein")
-            );
-        })
-        .fail(() => {
-            targetDiv.append(
-                $('<div />').append("Fehler beim Abfragen der Details."));
-        });
+    if (detailsDivDoesNotContainRequestedItem(breachName, detailsDiv)) {
+        $.ajax(
+            {
+                url: "AccountCheck/GetBreachDetails",
+                method: "POST",
+                data: { breachName: breachName }
+            })
+            .done((data, text, xhr) => {
+                if (xhr.status === 200) {
+                    detailsDiv.html(data);
+                }
+            })
+            .fail(() => {
+                detailsDiv.html("Kann nicht mit dem Webserver kommunizieren.");
+            })
+            .always(() => {
+                detailsDiv.fadeIn("fast");
+            });
+    }
 }
 
-function getBreachLogo(logoPath) {
-    return (
-        $("<div />").prop({ class: "row justify-content-center bg-dark rounded breach-logo" })
-            .append(
-                $("<img />").prop({ src: logoPath, class: "m-2" }))
-    );
-}
-
-function getBreachDetailRow(description, data) {
-    return (
-        $("<div />").prop({ class: "row justify-content-center" })
-            .append(
-                $("<div />").prop({ class: "col col-sm text-right" }).text(description))
-            .append(
-                $("<div />").prop({ class: "col col-sm text-left" }).text(data))
-    );
-}
-
-function detailsDivDoesNotContainRequestedItem(detailsDiv, requestedItem) {
+function detailsDivDoesNotContainRequestedItem(requestedItem, detailsDiv) {
     return detailsDiv.find('.col').filter(":contains('" + requestedItem + "')").length === 0;
 }

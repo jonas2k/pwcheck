@@ -36,7 +36,7 @@ namespace pwcheck.Controllers {
 
         private async Task<List<Breach>> GetLatestBreaches() {
             httpClient.DefaultRequestHeaders.Accept.Clear();
-            httpClient.DefaultRequestHeaders.Add("User-Agent", "pwcheck");
+            httpClient.DefaultRequestHeaders.Add("User-Agent", Constants.HTTP_CLIENT_USERAGENT);
 
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Breach>));
 

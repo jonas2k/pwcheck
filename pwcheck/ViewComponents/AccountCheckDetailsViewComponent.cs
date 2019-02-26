@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using pwcheck.Helpers;
 using pwcheck.Models;
 using System;
@@ -13,9 +14,11 @@ namespace pwcheck.ViewComponents {
     public class AccountCheckDetailsViewComponent : ViewComponent {
 
         private readonly HttpClient httpClient;
+        private readonly HibpSettings hibpSettings;
 
-        public AccountCheckDetailsViewComponent(IHttpClientFactory httpClientFactory) {
+        public AccountCheckDetailsViewComponent(IHttpClientFactory httpClientFactory, IOptions<HibpSettings> hibpSettingsOptions) {
             httpClient = httpClientFactory.CreateClient(Constants.DEFAULT_HTTP_CLIENT);
+            hibpSettings = hibpSettingsOptions.Value;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(string breachName) {
@@ -25,7 +28,7 @@ namespace pwcheck.ViewComponents {
 
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(Breach));
 
-            Task<Stream> streamTask = httpClient.GetStreamAsync("https://haveibeenpwned.com/api/v2/breach/" + breachName);
+            Task<Stream> streamTask = httpClient.GetStreamAsync(hibpSettings.HibpPwnedBreachDetailsUrl + breachName);
             Breach breach = serializer.ReadObject(await streamTask) as Breach;
 
             return View(breach);

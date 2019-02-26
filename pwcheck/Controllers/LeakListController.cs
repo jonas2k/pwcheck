@@ -10,15 +10,18 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using pwcheck.Models;
 using pwcheck.Helpers;
+using Microsoft.Extensions.Options;
 
 namespace pwcheck.Controllers {
     public class LeakListController : Controller {
 
         private readonly HttpClient httpClient;
+        private readonly HibpSettings hibpSettings;
         private readonly ILogger logger;
 
-        public LeakListController(IHttpClientFactory httpClientFactory, ILogger<LeakListController> logger) {
+        public LeakListController(IHttpClientFactory httpClientFactory, ILogger<LeakListController> logger, IOptions<HibpSettings> hibpSettingsOptions) {
             httpClient = httpClientFactory.CreateClient(Constants.DEFAULT_HTTP_CLIENT);
+            hibpSettings = hibpSettingsOptions.Value;
             this.logger = logger;
         }
 
@@ -40,7 +43,7 @@ namespace pwcheck.Controllers {
 
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Breach>));
 
-            Task<Stream> streamTask = httpClient.GetStreamAsync("https://haveibeenpwned.com/api/v2/breaches");
+            Task<Stream> streamTask = httpClient.GetStreamAsync(hibpSettings.HibpPwnedAllBreachesUrl);
             List<Breach> breaches = serializer.ReadObject(await streamTask) as List<Breach>;
             return breaches;
         }

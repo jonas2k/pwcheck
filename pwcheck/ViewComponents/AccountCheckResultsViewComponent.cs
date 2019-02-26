@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
 using pwcheck.Helpers;
 using pwcheck.Models;
 using pwcheck.Models.ViewModels;
@@ -15,9 +16,11 @@ namespace pwcheck.ViewComponents {
     public class AccountCheckResultsViewComponent : ViewComponent {
 
         private readonly HttpClient httpClient;
+        private readonly HibpSettings hibpSettings;
 
-        public AccountCheckResultsViewComponent(IHttpClientFactory httpClientFactory) {
+        public AccountCheckResultsViewComponent(IHttpClientFactory httpClientFactory, IOptions<HibpSettings> hibpSettingsOptions) {
             httpClient = httpClientFactory.CreateClient(Constants.DEFAULT_HTTP_CLIENT);
+            hibpSettings = hibpSettingsOptions.Value;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(string input, bool includeUnverified) {
@@ -29,7 +32,7 @@ namespace pwcheck.ViewComponents {
 
             DataContractJsonSerializer serializer = new DataContractJsonSerializer(typeof(List<Breach>));
 
-            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync("https://haveibeenpwned.com/api/v2/breachedaccount/" + input + "?" + (includeUnverified ? "includeUnverified=true" : "") + "&truncateResponse=true");
+            HttpResponseMessage httpResponseMessage = await httpClient.GetAsync(hibpSettings.HibpPwnedAccountCheckUrl + input + "?" + (includeUnverified ? "includeUnverified=true" : "") + "&truncateResponse=true");
 
             model.Breaches = new List<Breach>();
 

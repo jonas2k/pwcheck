@@ -2,7 +2,7 @@ version: 1.0.{build}
 branches:
   only:
   - master
-image: Visual Studio 2017
+image: Visual Studio 2019
 dotnet_csproj:
   patch: true
   file: '**\*.csproj'
@@ -12,7 +12,7 @@ dotnet_csproj:
   file_version: '{version}'
   informational_version: '{version}'
 install:
-- ps: Install-Product node 11
+- ps: Install-Product node 13
 before_build:
 - cmd: >-
     dotnet restore
@@ -23,7 +23,7 @@ before_build:
 
     cd ./node_modules/.bin/
 
-    gulp.cmd
+    grunt.cmd
 
     cd ../../..
 build:
@@ -33,7 +33,7 @@ build:
 after_test:
 - ps: dotnet publish -c Release
 artifacts:
-- path: ./pwcheck/bin/Release/netcoreapp2.2/publish/
+- path: ./pwcheck/bin/Release/netcoreapp3.1/publish/
   name: Publish
 deploy:
 - provider: AzureAppServiceZipDeploy

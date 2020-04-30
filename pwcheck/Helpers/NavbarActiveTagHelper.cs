@@ -29,7 +29,6 @@ namespace pwcheck.Helpers {
 
         private bool ShouldBeActive() {
             string currentController = ViewContext.RouteData.Values["Controller"].ToString();
-            string currentAction = ViewContext.RouteData.Values["Action"].ToString();
 
             if (!string.IsNullOrWhiteSpace(Controller) && Controller.ToLower() != currentController.ToLower()) {
                 return false;

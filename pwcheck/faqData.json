@@ -20,8 +20,8 @@
       {
         "Question": "Wozu dient diese Seite?",
         "Answer": [
-          "Diese Webanwedung ermöglicht die Überprüfung der Integrität von Passwörtern und Anmeldenamen. ",
-          "Es wird ermittelt, ob das Passwort oder der Anmeldename in gehackten, öffentlich zugänglichen Datensätzen enthalten ist. ",
+          "Diese Webanwedung ermöglicht die Überprüfung der Integrität von Passwörtern. ",
+          "Es wird ermittelt, ob das Passwort in gehackten, öffentlich zugänglichen Datensätzen enthalten ist. ",
           "Zu diesem Zweck wird der Dienst <a href=\"https://haveibeenpwned.com\" target=\"_blank\">haveibeenpwned</a> des Sicherheitsforschers <a href=\"https://twitter.com/troyhunt\" target=\"_blank\">Troy Hunt</a> genutzt, ",
           "welcher Informationen zu bekannten Hacks, kompromittierten Anbietern und veröffentlichten Datenbanken bereitstellt. ",
           "Zudem werden Hinweise bezüglich der Qualität des eingegebenen Passworts unter Verwendung von ",
@@ -36,23 +36,6 @@
           "Die ersten fünf Zeichen dieses Hashes werden an die REST-API von haveibeenpwned gesendet. ",
           "Der Dienst beantwortet die Anfrage mit allen Hashes aus Datenlecks, in denen diese Zeichen enthalten sind. ",
           "Somit ist ein lokaler Abgleich möglich, ohne das Passwort übermitteln zu müssen."
-        ]
-      },
-      {
-        "Question": "Wie funktioniert die Überprüfung des Anmeldenamens?",
-        "Answer": [
-          "Um festzustellen, ob der Anmeldename in einem gehackten Datensatz enthalten ist, ",
-          "wird dieser an den oben genannten Dienst übertragen. ",
-          "Im Falle eines Fundes können weitere Details zu dem jeweiligen Hack abgefragt werden."
-        ]
-      },
-      {
-        "Question": "Was ist mit \"unbestätigten Hacks\" gemeint?",
-        "Answer": [
-          "Aufgefundene Datensätze werden als unbestätigt bezeichnet, wenn sie nicht eindeutig einem Hack zugeordnet werden können. ",
-          "Nicht jeder Dienstanbieter gesteht eine Kompromittierung ein. Sofern die Zweifel an einer eindeutigen Zuordenbarkeit überwiegen, ",
-          "wird der Datensatz durch dieses Merkmal gekennzeichnet. Unabhängig von dem Ursprung handelt es sich dabei jedoch nach wie vor um Daten, ",
-          "die im Internet frei zugänglich sind. Im Falle eines Fundes besteht demnach der identische Handlungsbedarf. "
         ]
       },
       {
